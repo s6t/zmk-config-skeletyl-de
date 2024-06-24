@@ -1,0 +1,189 @@
+#include "keys_de.h"
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+
+// The default keymap is roughly on Miryoku layout
+// (https://github.com/manna-harbour/miryoku).
+// Customize on your own on the config folder.
+
+#define DEFAULT     0
+#define NUMBER      1
+#define SYMBOL      2
+#define FUNC        3
+#define KEYS_LEFT   0 1 2 3 4 10 11 12 13 14 20 21 22 23 24
+#define KEYS_RIGHT  5 6 7 8 9 15 16 17 18 19 25 26 27 28 29
+#define THUMBS      30 31 32 33 34 35
+#define HM_TAPPING_TERM 300
+#define HM_QUICK_TAP 200
+#define HM_PRIOR_IDLE 0
+
+&lt {
+    tapping-term-ms = <300>;
+    flavor = "hold-preferred";
+    quick-tap-ms = <200>;
+};
+
+/ {
+    behaviors {
+        umlaut_a: umlaut_a {
+            compatible = "zmk,behavior-mod-morph";
+            label = "Umlaut A";
+            #binding-cells = <0>;
+            bindings = <&kp DE_A>, <&kp DE_A_UMLAUT>;
+
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+        };
+
+        umlaut_o: umlaut_o {
+            compatible = "zmk,behavior-mod-morph";
+            label = "Umlaut O";
+            #binding-cells = <0>;
+            bindings = <&kp DE_O>, <&kp DE_O_UMLAUT>;
+
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+        };
+
+        umlaut_u: umlaut_u {
+            compatible = "zmk,behavior-mod-morph";
+            label = "Umlaut U";
+            #binding-cells = <0>;
+            bindings = <&kp DE_U>, <&kp DE_U_UMLAUT>;
+
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+        };
+
+        eszett: eszett {
+            compatible = "zmk,behavior-mod-morph";
+            label = "Eszett";
+            #binding-cells = <0>;
+            bindings = <&kp DE_S>, <&kp DE_SZ>;
+
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+        };
+
+        hm_l: homerow_mods_left {
+            compatible = "zmk,behavior-hold-tap";
+            label = "Homerow Mods Left";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+
+            flavor = "balanced";
+            tapping-term-ms = <HM_TAPPING_TERM>;
+            quick-tap-ms = <HM_QUICK_TAP>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE>;
+            hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        hm_r: homerow_mods_right {
+            compatible = "zmk,behavior-hold-tap";
+            label = "Homerow Mods Right";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+
+            flavor = "balanced";
+            tapping-term-ms = <HM_TAPPING_TERM>;
+            quick-tap-ms = <HM_QUICK_TAP>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE>;
+            hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        hm_a: homerow_mod_a {
+            compatible = "zmk,behavior-hold-tap";
+            label = "Homerow Mod A";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&umlaut_a>;
+
+            flavor = "balanced";
+            tapping-term-ms = <HM_TAPPING_TERM>;
+            quick-tap-ms = <HM_QUICK_TAP>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE>;
+            hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        hm_s: homerow_mod_s {
+            compatible = "zmk,behavior-hold-tap";
+            label = "Homerow Mod S";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&eszett>;
+
+            flavor = "balanced";
+            tapping-term-ms = <HM_TAPPING_TERM>;
+            quick-tap-ms = <HM_QUICK_TAP>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE>;
+            hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        kp_sep: kp_seperator {
+            compatible = "zmk,behavior-mod-morph";
+            label = "Keypad Seperator";
+            bindings = <&kp KP_COMMA>, <&kp KP_DOT>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT)>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        Capslock {
+            bindings = <&kp CAPSLOCK>;
+            key-positions = <10 19>;
+        };
+
+        suspend {
+            bindings = <&kp C_SLEEP>;
+            key-positions = <14 15>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            display-name = "";
+            bindings = <
+  &kp DE_Q            &kp DE_W              &kp DE_E             &kp DE_R             &kp DE_T                &kp DE_Z             &umlaut_u             &kp DE_I             &umlaut_o                 &kp DE_P
+  &hm_a LEFT_SHIFT 0  &hm_s LEFT_CONTROL 0  &hm_l LEFT_GUI DE_D  &hm_l LEFT_ALT DE_F  &hm_l RIGHT_ALT DE_G    &hm_r LEFT_ALT DE_H  &hm_r RIGHT_ALT DE_J  &hm_r LEFT_GUI DE_K  &hm_r RIGHT_CONTROL DE_L  &hm_r RIGHT_SHIFT DE_PLUS
+  &kp DE_Y            &kp DE_X              &kp DE_C             &kp DE_V             &kp DE_B                &kp DE_N             &kp DE_M              &kp DE_COMMA         &kp DE_DOT                &kp DE_MINUS
+                                            &lt 1 TAB            &kp SPACE            &lt 3 ESCAPE            &kp DELETE           &kp ENTER             &lt 2 BACKSPACE
+            >;
+        };
+
+        number_layer {
+            display-name = "NUMBER";
+            bindings = <
+  &none           &kp HOME                &kp PRINTSCREEN          &kp PAGE_UP               &none            &kp KP_DIVIDE               &kp KP_NUMBER_7              &kp KP_NUMBER_8             &kp KP_NUMBER_9                  &kp KP_MINUS
+  &kp LEFT_SHIFT  &hm_l LEFT_CONTROL END  &hm_l LEFT_GUI UP_ARROW  &hm_l LEFT_ALT PAGE_DOWN  &kp RIGHT_ALT    &hm_r LEFT_ALT KP_MULTIPLY  &hm_r RIGHT_ALT KP_NUMBER_4  &hm_r LEFT_GUI KP_NUMBER_5  &hm_r RIGHT_CONTROL KP_NUMBER_6  &hm_r RIGHT_SHIFT KP_PLUS
+  &none           &kp LEFT_ARROW          &kp DOWN_ARROW           &kp RIGHT_ARROW           &none            &kp KP_NUMBER_0             &kp KP_NUMBER_1              &kp KP_NUMBER_2             &kp KP_NUMBER_3                  &kp_sep
+                                          &trans                   &trans                    &trans           &trans                      &trans                       &trans
+            >;
+        };
+
+        symbol_layer {
+            display-name = "SYMBOL";
+            bindings = <
+  &kp EXCL      &kp DE_QUESTION       &kp DE_SECTION       &kp DE_DOLLAR            &kp DE_PERCENT      &kp DE_AMPERSAND     &kp DE_AT_SIGN            &kp DE_EURO         &kp DE_CARET          &kp DE_ASTERISK
+  &kp DE_SLASH  &kp DE_LEFT_BRACKET   &kp DE_LEFT_BRACE    &kp DE_LEFT_PARENTHESIS  &kp DE_LESS_THAN    &kp DE_GREATER_THAN  &kp DE_RIGHT_PARENTHESIS  &kp DE_RIGHT_BRACE  &kp DE_RIGHT_BRACKET  &kp DE_BACKSLASH
+  &kp DE_PIPE   &kp DE_DOUBLE_QUOTES  &kp DE_SINGLE_QUOTE  &kp DE_ACUTE             &kp DE_GRAVE        &kp DE_CARET         &kp DE_DEGREE             &kp DE_TILDE        &kp DE_HASH           &kp DE_EQUAL
+                                      &trans               &trans                   &trans              &trans               &trans                    &trans
+            >;
+        };
+
+        func_layer {
+            display-name = "FN+CTRL";
+            bindings = <
+  &kp F2       &kp F3             &kp F4            &kp F5        &kp F6    &kp F7        &kp F8        &kp F9        &kp F10       &kp F11
+  &sys_reset   &kp C_VOLUME_DOWN  &kp C_MUTE        &kp C_VOL_UP  &none     &out OUT_BLE  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &sys_reset
+  &bootloader  &kp C_PREV         &kp C_PLAY_PAUSE  &kp C_NEXT    &none     &out OUT_USB  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR    &bootloader
+                                  &trans            &trans        &trans    &trans        &trans        &trans
+            >;
+        };
+    };
+};
