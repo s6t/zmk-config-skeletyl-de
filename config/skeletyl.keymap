@@ -20,16 +20,16 @@
 #define HM_TAPPING_TERM 280
 #define HM_QUICK_TAP 240
 #define HM_PRIOR_IDLE 120
-#define HM_L4 LEFT_CONTROL
-#define HM_L3 LEFT_GUI
-#define HM_L2 LEFT_ALT
-#define HM_L1 LEFT_SHIFT
+#define HM_L4 LEFT_GUI
+#define HM_L3 LEFT_ALT
+#define HM_L2 LEFT_SHIFT
+#define HM_L1 LEFT_CONTROL
 #define HM_L0 RIGHT_ALT
-#define HM_R0 LEFT_ALT
-#define HM_R1 RIGHT_SHIFT
-#define HM_R2 RIGHT_ALT
-#define HM_R3 RIGHT_GUI
-#define HM_R4 RIGHT_CONTROL
+#define HM_R0 RIGHT_ALT
+#define HM_R1 RIGHT_CONTROL
+#define HM_R2 RIGHT_SHIFT
+#define HM_R3 LEFT_ALT
+#define HM_R4 RIGHT_GUI
 
 &lt {
     tapping-term-ms = <280>;
@@ -83,7 +83,7 @@
 
         eszett {
             bindings = <&kp DE_ESZETT>;
-            key-positions = <17 11>;
+            key-positions = <11 18>;
             timeout-ms = <75>;
             slow-release;
             layers = <DEFAULT>;
@@ -91,7 +91,7 @@
 
         umlaut_a {
             bindings = <&kp DE_A_UMLAUT>;
-            key-positions = <17 10>;
+            key-positions = <10 18>;
             timeout-ms = <75>;
             slow-release;
             layers = <DEFAULT>;
@@ -99,7 +99,7 @@
 
         umlaut_o {
             bindings = <&kp DE_O_UMLAUT>;
-            key-positions = <12 8>;
+            key-positions = <8 11>;
             timeout-ms = <75>;
             slow-release;
             layers = <DEFAULT>;
@@ -107,7 +107,7 @@
 
         umlaut_u {
             bindings = <&kp DE_U_UMLAUT>;
-            key-positions = <12 6>;
+            key-positions = <6 11>;
             timeout-ms = <75>;
             slow-release;
             layers = <DEFAULT>;
@@ -135,10 +135,10 @@
         number_layer {
             display-name = "NUMBER";
             bindings = <
-  &none      &kp HOME         &kp PRINTSCREEN       &kp PAGE_UP            &none        &kp KP_DIVIDE            &kp KP_NUMBER_7          &kp KP_NUMBER_8          &kp KP_NUMBER_9          &kp KP_MINUS
-  &kp HM_L4  &hm_l HM_L3 END  &hm_l HM_L2 UP_ARROW  &hm_l HM_L1 PAGE_DOWN  &kp HM_L0    &hm_r HM_R0 KP_MULTIPLY  &hm_r HM_R1 KP_NUMBER_4  &hm_r HM_R2 KP_NUMBER_5  &hm_r HM_R3 KP_NUMBER_6  &hm_r HM_R4 KP_PLUS
-  &none      &kp LEFT_ARROW   &kp DOWN_ARROW        &kp RIGHT_ARROW        &none        &kp KP_NUMBER_0          &kp KP_NUMBER_1          &kp KP_NUMBER_2          &kp KP_NUMBER_3          &kp_sep
-                              &trans                &trans                 &trans       &trans                   &trans                   &trans
+  &kp LC(HOME)         &kp HOME         &kp PRINTSCREEN       &kp PAGE_UP            &none        &kp KP_DIVIDE            &kp KP_NUMBER_7          &kp KP_NUMBER_8          &kp KP_NUMBER_9          &kp KP_MINUS
+  &hm_l HM_L4 LC(END)  &hm_l HM_L3 END  &hm_l HM_L2 UP_ARROW  &hm_l HM_L1 PAGE_DOWN  &kp HM_L0    &hm_r HM_R0 KP_MULTIPLY  &hm_r HM_R1 KP_NUMBER_4  &hm_r HM_R2 KP_NUMBER_5  &hm_r HM_R3 KP_NUMBER_6  &hm_r HM_R4 KP_PLUS
+  &none                &kp LEFT_ARROW   &kp DOWN_ARROW        &kp RIGHT_ARROW        &none        &kp KP_NUMBER_0          &kp KP_NUMBER_1          &kp KP_NUMBER_2          &kp KP_NUMBER_3          &kp_sep
+                                        &trans                &trans                 &trans       &trans                   &trans                   &trans
             >;
         };
 
@@ -155,10 +155,10 @@
         func_layer {
             display-name = "FUNC";
             bindings = <
-  &none             &kp F1          &kp F2          &kp F3          &kp F4            &kp CAPSLOCK      &kp KP_NUMLOCK  &none         &none         &none
-  &kp HM_L4         &hm_l HM_L3 F5  &hm_l HM_L2 F6  &hm_l HM_L1 F7  &hm_l HM_L0 F8    &kp HM_R0         &kp HM_R1       &kp HM_R2     &kp HM_R3     &kp HM_R4
-  &kp LS(LC(DE_T))  &kp F9          &kp F10         &kp F11         &kp F12           &kp LC(LS(DE_V))  &kp LC(DE_V)    &kp LC(DE_C)  &kp LC(DE_X)  &kp LC(LA(DE_T))
-                                    &trans          &trans          &trans            &trans            &trans          &trans
+  &kp LC(LS(DE_T))      &kp LC(LS(DE_W))          &kp LC(DE_N7)             &kp LC(F5)                &kp LC(DE_Z)            &kp KP_NUMLOCK        &kp F1          &kp F2          &kp F3          &kp F4
+  &hm_l HM_L4 LC(DE_A)  &hm_l HM_L3 LC(LS(DE_X))  &hm_l HM_L2 LC(LS(DE_C))  &hm_l HM_L1 LC(LS(DE_V))  &hm_l HM_L0 LC(DE_F)    &hm_r HM_R0 CAPSLOCK  &hm_r HM_R1 F5  &hm_r HM_R2 F6  &hm_r HM_R3 F7  &hm_r HM_R4 F8
+  &kp LC(DE_S)          &kp LC(DE_X)              &kp LC(DE_C)              &kp LC(DE_V)              &kp LC(DE_H)            &caps_word            &kp F9          &kp F10         &kp F11         &kp F12
+                                                  &trans                    &trans                    &trans                  &trans                &trans          &trans
             >;
         };
 
