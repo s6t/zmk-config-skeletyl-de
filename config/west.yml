@@ -1,14 +1,18 @@
 manifest:
   remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: joelspadin
+      url-base: https://github.com/joelspadin
     - name: s6t
       url-base: https://github.com/s6t
   projects:
     - name: zmk
-      remote: s6t
+      remote: zmkfirmware
       revision: main
       import: app/west.yml
     - name: zmk-locales
-      remote: s6t
+      remote: joelspadin
       revision: main
     - name: zmk-shield-skeletyl
       remote: s6t
