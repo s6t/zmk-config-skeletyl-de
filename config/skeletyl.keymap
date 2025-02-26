@@ -24,7 +24,7 @@
 #define HRM_LGIU(keycode)    &hrm_ld LEFT_GUI keycode
 #define HRM_LALT(keycode)    &hrm_ld LEFT_ALT keycode
 #define HRM_LSFT(keycode)    &hrm_l  LEFT_SHIFT keycode
-#define HRM_LCTL(keycode)    &hrm_l LEFT_CONTROL keycode
+#define HRM_LCTL(keycode)    &hrm_ld LEFT_CONTROL keycode
 
 #define HRM_RCTL(keycode)    &hrm_rd LEFT_CONTROL keycode
 #define HRM_RSFT(keycode)    &hrm_r  LEFT_SHIFT keycode
