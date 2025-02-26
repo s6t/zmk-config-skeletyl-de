@@ -25,9 +25,7 @@
 #define HRM_LALT(keycode)    &hrm_ld LEFT_ALT keycode
 #define HRM_LSFT(keycode)    &hrm_l  LEFT_SHIFT keycode
 #define HRM_LCTL(keycode)    &hrm_l LEFT_CONTROL keycode
-#define HRM_LALT_GR(keycode) &hrm_l  RIGHT_ALT keycode
 
-#define HRM_RALT_GR(keycode) &hrm_r  RIGHT_ALT keycode
 #define HRM_RCTL(keycode)    &hrm_rd LEFT_CONTROL keycode
 #define HRM_RSFT(keycode)    &hrm_r  LEFT_SHIFT keycode
 #define HRM_RALT(keycode)    &hrm_rd LEFT_ALT keycode
@@ -155,20 +153,20 @@
         default_layer {
             display-name = "";
             bindings = <
-  &kp DE_Q        &kp DE_W        &kp DE_E           &kp DE_R        &kp DE_T           &kp DE_Z          &kp DE_U        &kp DE_I               &kp DE_O        &kp DE_P
-  HRM_LGIU(DE_A)  HRM_LALT(DE_S)  HRM_LSFT(DE_D)     HRM_LCTL(DE_F)  &kp DE_G           &kp DE_H          HRM_RCTL(DE_J)  HRM_RSFT(DE_K)         HRM_RALT(DE_L)  HRM_RGIU(DE_PLUS)
-  &kp DE_Y        &kp DE_X        HRM_LALT_GR(DE_C)  &kp DE_V        &kp DE_B           &kp DE_N          &kp DE_M        HRM_RALT_GR(DE_COMMA)  &kp DE_DOT      &kp DE_MINUS
-                                  &lt NUMBER TAB     &kp SPACE       &lt FUNC ESCAPE    &lt MEDIA DELETE  &kp ENTER       &lt SYMBOL BACKSPACE
+  &kp DE_Q        &kp DE_W        &kp DE_E        &kp DE_R        &kp DE_T           &kp DE_Z          &kp DE_U        &kp DE_I              &kp DE_O        &kp DE_P
+  HRM_LGIU(DE_A)  HRM_LALT(DE_S)  HRM_LSFT(DE_D)  HRM_LCTL(DE_F)  &kp DE_G           &kp DE_H          HRM_RCTL(DE_J)  HRM_RSFT(DE_K)        HRM_RALT(DE_L)  HRM_RGIU(DE_PLUS)
+  &kp DE_Y        &kp DE_X        &kp DE_C        &kp DE_V        &kp DE_B           &kp DE_N          &kp DE_M        &kp DE_COMMA          &kp DE_DOT      &kp DE_MINUS
+                                  &lt NUMBER TAB  &kp SPACE       &lt FUNC ESCAPE    &lt MEDIA DELETE  &kp ENTER       &lt SYMBOL BACKSPACE
             >;
         };
 
         number_layer {
             display-name = "NUMBER";
             bindings = <
-  &kp LC(HOME)       &kp HOME        &kp PRINTSCREEN          &kp PAGE_UP          &none     &kp KP_DIVIDE    &kp KP_NUMBER_7        &kp KP_NUMBER_8           &kp KP_NUMBER_9        &kp KP_MINUS
-  HRM_LGIU(LC(END))  HRM_LALT(END)   HRM_LSFT(UP_ARROW)       HRM_LCTL(PAGE_DOWN)  &none     &kp KP_MULTIPLY  HRM_RCTL(KP_NUMBER_4)  HRM_RSFT(KP_NUMBER_5)     HRM_RALT(KP_NUMBER_6)  HRM_RGIU(KP_PLUS)
-  &none              &kp LEFT_ARROW  HRM_LALT_GR(DOWN_ARROW)  &kp RIGHT_ARROW      &none     &kp KP_NUMBER_0  &kp KP_NUMBER_1        HRM_RALT_GR(KP_NUMBER_2)  &kp KP_NUMBER_3        &kp_sep
-                                     &trans                   &trans               &trans    &trans           &trans                 &trans
+  &kp LC(HOME)       &kp HOME        &kp PRINTSCREEN     &kp PAGE_UP          &none     &kp KP_DIVIDE    &kp KP_NUMBER_7        &kp KP_NUMBER_8        &kp KP_NUMBER_9        &kp KP_MINUS
+  HRM_LGIU(LC(END))  HRM_LALT(END)   HRM_LSFT(UP_ARROW)  HRM_LCTL(PAGE_DOWN)  &none     &kp KP_MULTIPLY  HRM_RCTL(KP_NUMBER_4)  HRM_RSFT(KP_NUMBER_5)  HRM_RALT(KP_NUMBER_6)  HRM_RGIU(KP_PLUS)
+  &none              &kp LEFT_ARROW  &kp DOWN_ARROW      &kp RIGHT_ARROW      &none     &kp KP_NUMBER_0  &kp KP_NUMBER_1        &kp KP_NUMBER_2        &kp KP_NUMBER_3        &kp_sep
+                                     &trans              &trans               &trans    &trans           &trans                 &trans
             >;
         };
 
