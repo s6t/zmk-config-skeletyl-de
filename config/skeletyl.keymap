@@ -21,19 +21,17 @@
 #define HM_QUICK_TAP 240
 #define HM_PRIOR_IDLE 120
         
-#define LGIU(keycode)     &hmd_l LEFT_GUI keycode
-#define LALT(keycode)     &hmd_l LEFT_ALT keycode
-#define LSHIFT(keycode)   &hm_l  LEFT_SHIFT keycode
-#define LCONTROL(keycode) &hmd_l LEFT_CONTROL keycode
-#define LALTGR(keycode)   &hm_l  RIGHT_ALT keycode
+#define HRM_LGIU(keycode)    &hrm_ld LEFT_GUI keycode
+#define HRM_LALT(keycode)    &hrm_ld LEFT_ALT keycode
+#define HRM_LSFT(keycode)    &hrm_l  LEFT_SHIFT keycode
+#define HRM_LCTL(keycode)    &hrm_l LEFT_CONTROL keycode
+#define HRM_LALT_GR(keycode) &hrm_l  RIGHT_ALT keycode
 
-#define RALTGR(keycode)   &hm_r  RIGHT_ALT keycode
-#define RCONTROL(keycode) &hmd_r LEFT_CONTROL keycode
-#define RSHIFT(keycode)   &hm_r  LEFT_SHIFT keycode
-#define RALT(keycode)     &hmd_r LEFT_ALT keycode
-#define RGIU(keycode)     &hmd_r LEFT_GUI keycode
-
-#define KP(keycode) &kp keycode
+#define HRM_RALT_GR(keycode) &hrm_r  RIGHT_ALT keycode
+#define HRM_RCTL(keycode)    &hrm_rd LEFT_CONTROL keycode
+#define HRM_RSFT(keycode)    &hrm_r  LEFT_SHIFT keycode
+#define HRM_RALT(keycode)    &hrm_rd LEFT_ALT keycode
+#define HRM_RGIU(keycode)    &hrm_rd LEFT_GUI keycode
 
 &lt {
     tapping-term-ms = <280>;
@@ -44,9 +42,9 @@
 
 / {
     behaviors {
-        hmd_l: homerow_mods_left {
+        hrm_ld: homerow_mods_left_delay {
             compatible = "zmk,behavior-hold-tap";
-            label = "Homerow Mods Delayed Left";
+            label = "Home Row Mods Left";
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
 
@@ -58,9 +56,9 @@
             hold-trigger-on-release;
         };
 
-        hm_l: homerow_mods_left_shift {
+        hrm_l: homerow_mods_left {
             compatible = "zmk,behavior-hold-tap";
-            label = "Homerow Mods Left";
+            label = "Home Row Mods Left";
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
 
@@ -72,9 +70,9 @@
             hold-trigger-on-release;
         };
 
-        hmd_r: homerow_mods_right {
+        hrm_rd: homerow_mods_right_delay {
             compatible = "zmk,behavior-hold-tap";
-            label = "Homerow Mods Delayed Right";
+            label = "Home Row Mods Right";
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
 
@@ -86,9 +84,9 @@
             hold-trigger-on-release;
         };
 
-        hm_r: homerow_mods_right_shift {
+        hrm_r: homerow_mods_right {
             compatible = "zmk,behavior-hold-tap";
-            label = "Homerow Mods Right";
+            label = "Home Row Mods Right";
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
 
@@ -157,20 +155,20 @@
         default_layer {
             display-name = "";
             bindings = <
-  KP(DE_Q)    KP(DE_W)    KP(DE_E)        KP(DE_R)        KP(DE_T)           KP(DE_Z)          KP(DE_U)        KP(DE_I)              KP(DE_O)    KP(DE_P)
-  LGIU(DE_A)  LALT(DE_S)  LSHIFT(DE_D)    LCONTROL(DE_F)  KP(DE_G)           KP(DE_H)          RCONTROL(DE_J)  RSHIFT(DE_K)          RALT(DE_L)  RGIU(DE_PLUS)
-  KP(DE_Y)    KP(DE_X)    LALTGR(DE_C)    KP(DE_V)        KP(DE_B)           KP(DE_N)          KP(DE_M)        RALTGR(DE_COMMA)      KP(DE_DOT)  KP(DE_MINUS)
-                          &lt NUMBER TAB  KP(SPACE)       &lt FUNC ESCAPE    &lt MEDIA DELETE  KP(ENTER)       &lt SYMBOL BACKSPACE
+  &kp DE_Q        &kp DE_W        &kp DE_E           &kp DE_R        &kp DE_T           &kp DE_Z          &kp DE_U        &kp DE_I               &kp DE_O        &kp DE_P
+  HRM_LGIU(DE_A)  HRM_LALT(DE_S)  HRM_LSFT(DE_D)     HRM_LCTL(DE_F)  &kp DE_G           &kp DE_H          HRM_RCTL(DE_J)  HRM_RSFT(DE_K)         HRM_RALT(DE_L)  HRM_RGIU(DE_PLUS)
+  &kp DE_Y        &kp DE_X        HRM_LALT_GR(DE_C)  &kp DE_V        &kp DE_B           &kp DE_N          &kp DE_M        HRM_RALT_GR(DE_COMMA)  &kp DE_DOT      &kp DE_MINUS
+                                  &lt NUMBER TAB     &kp SPACE       &lt FUNC ESCAPE    &lt MEDIA DELETE  &kp ENTER       &lt SYMBOL BACKSPACE
             >;
         };
 
         number_layer {
             display-name = "NUMBER";
             bindings = <
-  &kp LC(HOME)              &kp HOME             &kp PRINTSCREEN             &kp PAGE_UP                    &none     &kp KP_DIVIDE    &kp KP_NUMBER_7                   &kp KP_NUMBER_8                &kp KP_NUMBER_9               &kp KP_MINUS
-  &hmd_l RIGHT_ALT LC(END)  &hmd_l LEFT_ALT END  &hm_l LEFT_SHIFT UP_ARROW   &hmd_l LEFT_CONTROL PAGE_DOWN  &none     &kp KP_MULTIPLY  &hmd_r RIGHT_CONTROL KP_NUMBER_4  &hm_r RIGHT_SHIFT KP_NUMBER_5  &hmd_r RIGHT_ALT KP_NUMBER_6  &hmd_r RIGHT_GUI KP_PLUS
-  &none                     &kp LEFT_ARROW       &hm_l RIGHT_ALT DOWN_ARROW  &kp RIGHT_ARROW                &none     &kp KP_NUMBER_0  &kp KP_NUMBER_1                   &kp KP_NUMBER_2                &kp KP_NUMBER_3               &kp_sep
-                                                 &trans                      &trans                         &trans    &trans           &trans                            &trans
+  &kp LC(HOME)       &kp HOME        &kp PRINTSCREEN          &kp PAGE_UP          &none     &kp KP_DIVIDE    &kp KP_NUMBER_7        &kp KP_NUMBER_8           &kp KP_NUMBER_9        &kp KP_MINUS
+  HRM_LGIU(LC(END))  HRM_LALT(END)   HRM_LSFT(UP_ARROW)       HRM_LCTL(PAGE_DOWN)  &none     &kp KP_MULTIPLY  HRM_RCTL(KP_NUMBER_4)  HRM_RSFT(KP_NUMBER_5)     HRM_RALT(KP_NUMBER_6)  HRM_RGIU(KP_PLUS)
+  &none              &kp LEFT_ARROW  HRM_LALT_GR(DOWN_ARROW)  &kp RIGHT_ARROW      &none     &kp KP_NUMBER_0  &kp KP_NUMBER_1        HRM_RALT_GR(KP_NUMBER_2)  &kp KP_NUMBER_3        &kp_sep
+                                     &trans                   &trans               &trans    &trans           &trans                 &trans
             >;
         };
 
@@ -187,10 +185,10 @@
         func_layer {
             display-name = "FUNC";
             bindings = <
-  &kp LC(LS(DE_T))           &kp LC(LS(DE_W))              &kp LC(DE_N7)                  &kp LC(F5)                        &kp LC(DE_Z)    &kp KP_NUMLOCK  &kp F1                   &kp F2                &kp F3               &kp F4
-  &hmd_l RIGHT_ALT LC(DE_A)  &hmd_l LEFT_ALT LC(LS(DE_X))  &hm_l LEFT_SHIFT LC(LS(DE_C))  &hmd_l LEFT_CONTROL LC(LS(DE_V))  &kp LC(DE_F)    &kp CAPSLOCK    &hmd_r RIGHT_CONTROL F5  &hm_r RIGHT_SHIFT F6  &hmd_r RIGHT_ALT F7  &hmd_r RIGHT_GUI F8
-  &kp LC(DE_S)               &kp LC(DE_X)                  &kp LC(DE_C)                   &kp LC(DE_V)                      &kp LC(DE_H)    &caps_word      &kp F9                   &kp F10               &kp F11              &kp F12
-                                                           &trans                         &trans                            &trans          &trans          &trans                   &trans
+  &kp LC(LS(DE_T))  &kp LC(LS(DE_W))  &kp LC(DE_N7)     &kp LC(F5)        &kp LC(DE_Z)    &kp KP_NUMLOCK  &kp F1  &kp F2   &kp F3   &kp F4
+  &kp LC(DE_A)      &kp LC(LS(DE_X))  &kp LC(LS(DE_C))  &kp LC(LS(DE_V))  &kp LC(DE_F)    &kp CAPSLOCK    &kp F5  &kp F6   &kp F7   &kp F8
+  &kp LC(DE_S)      &kp LC(DE_X)      &kp LC(DE_C)      &kp LC(DE_V)      &kp LC(DE_H)    &caps_word      &kp F9  &kp F10  &kp F11  &kp F12
+                                      &trans                  &trans      &trans          &trans          &trans  &trans
             >;
         };
 
