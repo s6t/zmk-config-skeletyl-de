@@ -50,17 +50,17 @@ ZMK_MOD_MORPH(kp_sep,
 )
 
 ZMK_LAYER(default_layer,
-  &kp DE_Q        &kp DE_W        &kp DE_E          &kp DE_R         &kp DE_T           &kp DE_Z          &kp DE_U         &kp DE_I              &kp DE_O        &kp DE_P
-  &hml LGIU DE_A  &hml LALT DE_S  &hml LSHIFT DE_D  &hml LCRTL DE_F  &kp DE_G           &kp DE_H          &hmr LCRTL DE_J  &hmr LSHIFT DE_K      &hmr LALT DE_L  &hmr LGIU DE_PLUS
-  &kp DE_Y        &kp DE_X        &kp DE_C          &kp DE_V         &kp DE_B           &kp DE_N          &kp DE_M         &kp DE_COMMA          &kp DE_DOT      &kp DE_MINUS
-                                  &lt NUMBER TAB    &kp SPACE        &lt FUNC ESCAPE    &lt MEDIA DELETE  &kp ENTER        &lt SYMBOL BACKSPACE
+  &kp DE_Q        &kp DE_W        &kp DE_E         &kp DE_R         &kp DE_T           &kp DE_Z          &kp DE_U         &kp DE_I              &kp DE_O        &kp DE_P
+  &hml LGIU DE_A  &hml LALT DE_S  &hml LSHFT DE_D  &hml LCTRL DE_F  &kp DE_G           &kp DE_H          &hmr LCTRL DE_J  &hmr LSHFT DE_K       &hmr LALT DE_L  &hmr LGIU DE_PLUS
+  &kp DE_Y        &kp DE_X        &kp DE_C         &kp DE_V         &kp DE_B           &kp DE_N          &kp DE_M         &kp DE_COMMA          &kp DE_DOT      &kp DE_MINUS
+                                  &lt NUMBER TAB   &kp SPACE        &lt FUNC ESCAPE    &lt MEDIA DELETE  &kp ENTER        &lt SYMBOL BACKSPACE
 )
 
 ZMK_LAYER(number_layer,
-  &kp LC(HOME)       &kp HOME        &kp PRINTSCREEN       &kp PAGE_UP           &none     &kp KP_DIVIDE    &kp KP_NUMBER_7         &kp KP_NUMBER_8          &kp KP_NUMBER_9        &kp KP_MINUS
-  &hml LGIU LC(END)  &hml LALT END   &hml LSHIFT UP_ARROW  &hml LCRTL PAGE_DOWN  &none     &kp KP_MULTIPLY  &hmr LCRTL KP_NUMBER_4  &hmr LSHIFT KP_NUMBER_5  &hmr LALT KP_NUMBER_6  &hmr LGIU KP_PLUS
-  &none              &kp LEFT_ARROW  &kp DOWN_ARROW        &kp RIGHT_ARROW       &none     &kp KP_NUMBER_0  &kp KP_NUMBER_1         &kp KP_NUMBER_2          &kp KP_NUMBER_3        &kp_sep
-                                     &trans                &trans                &trans    &trans           &trans                  &trans
+  &kp LC(HOME)       &kp HOME        &kp PRINTSCREEN      &kp PAGE_UP           &none     &kp KP_DIVIDE    &kp KP_NUMBER_7         &kp KP_NUMBER_8         &kp KP_NUMBER_9        &kp KP_MINUS
+  &hml LGIU LC(END)  &hml LALT END   &hml LSHFT UP_ARROW  &hml LCTRL PAGE_DOWN  &none     &kp KP_MULTIPLY  &hmr LCTRL KP_NUMBER_4  &hmr LSHFT KP_NUMBER_5  &hmr LALT KP_NUMBER_6  &hmr LGIU KP_PLUS
+  &none              &kp LEFT_ARROW  &kp DOWN_ARROW       &kp RIGHT_ARROW       &none     &kp KP_NUMBER_0  &kp KP_NUMBER_1         &kp KP_NUMBER_2         &kp KP_NUMBER_3        &kp_sep
+                                     &trans               &trans                &trans    &trans           &trans                  &trans
 )
 
 ZMK_LAYER(symbol_layer,
