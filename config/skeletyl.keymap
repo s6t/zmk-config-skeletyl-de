@@ -108,11 +108,7 @@
         };
     };
 
-    ZMK_COMBO_4(eszett,   &kp DE_ESZETT,   LM3 RM3, DEFAULT)
-    ZMK_COMBO_4(umlaut_a, &kp DE_A_UMLAUT, LM4 RM3, DEFAULT)
-    ZMK_COMBO_4(umlaut_o, &kp DE_O_UMLAUT, LM3 RT3, DEFAULT)
-    ZMK_COMBO_4(umlaut_u, &kp DE_U_UMLAUT, LM3 RT1, DEFAULT)
-    ZMK_COMBO_3(suspend,  &kp C_SLEEP,     LM0 RM0)
+
 
 
     keymap {
@@ -178,6 +174,12 @@
             >;
         };
     };
-
-    ZMK_CONDITIONAL_LAYER(system, FUNC MEDIA, SYSTEM)
 };
+
+ZMK_COMBO_4(eszett,   &kp DE_ESZETT,   LM3 RM3, DEFAULT)
+ZMK_COMBO_4(umlaut_a, &kp DE_A_UMLAUT, LM4 RM3, DEFAULT)
+ZMK_COMBO_4(umlaut_o, &kp DE_O_UMLAUT, LM3 RT3, DEFAULT)
+ZMK_COMBO_4(umlaut_u, &kp DE_U_UMLAUT, LM3 RT1, DEFAULT)
+ZMK_COMBO_3(suspend,  &kp C_SLEEP,     LM0 RM0)
+
+ZMK_CONDITIONAL_LAYER(system, FUNC MEDIA, SYSTEM)
