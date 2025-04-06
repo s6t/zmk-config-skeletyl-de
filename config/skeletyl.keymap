@@ -3,6 +3,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <locale/keys_de.h>
+#include <zmk-helpers/helper.h>
 #include <zmk-helpers/key-labels/36.h>
 
 // The default keymap is roughly on Miryoku layout
@@ -110,42 +111,12 @@
     combos {
         compatible = "zmk,combos";
 
-        eszett {
-            bindings = <&kp DE_ESZETT>;
-            key-positions = <LM3 RM3>;
-            timeout-ms = <75>;
-            slow-release;
-            layers = <DEFAULT>;
-        };
+        ZMK_COMBO_4(eszett, <&kp DE_ESZETT>, <LM3 RM3>, <DEFAULT>)
+        ZMK_COMBO_4(umlaut_a, <&kp DE_A_UMLAUT>, <LM4 RM3>, <DEFAULT>)
+        ZMK_COMBO_4(umlaut_o, <&kp DE_O_UMLAUT>, <LM3 RT3>, <DEFAULT>)
+        ZMK_COMBO_4(umlaut_u, <&kp DE_U_UMLAUT>, <LM3 RT1>, <DEFAULT>)
 
-        umlaut_a {
-            bindings = <&kp DE_A_UMLAUT>;
-            key-positions = <LM4 RM3>;
-            timeout-ms = <75>;
-            slow-release;
-            layers = <DEFAULT>;
-        };
-
-        umlaut_o {
-            bindings = <&kp DE_O_UMLAUT>;
-            key-positions = <LM3 RT3>;
-            timeout-ms = <75>;
-            slow-release;
-            layers = <DEFAULT>;
-        };
-
-        umlaut_u {
-            bindings = <&kp DE_U_UMLAUT>;
-            key-positions = <LM3 RT1>;
-            timeout-ms = <75>;
-            slow-release;
-            layers = <DEFAULT>;
-        };
-
-        suspend {
-            bindings = <&kp C_SLEEP>;
-            key-positions = <LM0 RM0>;
-        };
+        ZMK_COMBO_3(suspend, <&kp C_SLEEP>, <LM0 RM0>)
     };
 
     keymap {
