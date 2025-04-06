@@ -6,10 +6,6 @@
 #include <zmk-helpers/helper.h>
 #include <zmk-helpers/key-labels/36.h>
 
-// The default keymap is roughly on Miryoku layout
-// (https://github.com/manna-harbour/miryoku).
-// Customize on your own on the config folder.
-
 #define DEFAULT     0
 #define NUMBER      1
 #define SYMBOL      2
@@ -19,19 +15,34 @@
 #define KEYS_LEFT   LT4 LT3 LT2 LT1 LT0 LM4 LM3 LM2 LM1 LM0 LB4 LB3 LB2 LB1 LB0
 #define KEYS_RIGHT  RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4
 #define THUMBS      LH2 LH1 LH0 RH0 RH1 RH2
-#define HM_TAPPING_TERM 280
-#define HM_QUICK_TAP 240
-#define HM_PRIOR_IDLE 120
-        
-#define HRM_LGIU(keycode)    &hrm_ld LEFT_GUI keycode
-#define HRM_LALT(keycode)    &hrm_ld LEFT_ALT keycode
-#define HRM_LSFT(keycode)    &hrm_l  LEFT_SHIFT keycode
-#define HRM_LCTL(keycode)    &hrm_ld LEFT_CONTROL keycode
 
-#define HRM_RCTL(keycode)    &hrm_rd LEFT_CONTROL keycode
-#define HRM_RSFT(keycode)    &hrm_r  LEFT_SHIFT keycode
-#define HRM_RALT(keycode)    &hrm_rd LEFT_ALT keycode
-#define HRM_RGIU(keycode)    &hrm_rd LEFT_GUI keycode
+#define ZMK_HOME_ROW_MODS(name, keys) \
+/ { \
+    behaviors { \
+        name: name { \
+            compatible = "zmk,behavior-hold-tap"; \
+            #binding-cells = <2>; \
+            flavor = "balanced"; \
+            tapping-term-ms = <280>; \
+            quick-tap-ms = <240>; \
+            require-prior-idle-ms = <120>; \
+            hold-trigger-key-positions = <keys>; \
+            hold-trigger-on-release; \
+            bindings = <&kp>, <&kp>; \
+        }; \
+    }; \
+};
+
+
+#define HRM_LGIU(keycode)    &hml LEFT_GUI keycode
+#define HRM_LALT(keycode)    &hml LEFT_ALT keycode
+#define HRM_LSFT(keycode)    &hml LEFT_SHIFT keycode
+#define HRM_LCTL(keycode)    &hml LEFT_CONTROL keycode
+
+#define HRM_RCTL(keycode)    &hmr LEFT_CONTROL keycode
+#define HRM_RSFT(keycode)    &hmr LEFT_SHIFT keycode
+#define HRM_RALT(keycode)    &hmr LEFT_ALT keycode
+#define HRM_RGIU(keycode)    &hmr LEFT_GUI keycode
 
 &lt {
     tapping-term-ms = <280>;
@@ -40,75 +51,13 @@
     require-prior-idle-ms = <120>;
 };
 
-/ {
-    behaviors {
-        hrm_ld: homerow_mods_left_delay {
-            compatible = "zmk,behavior-hold-tap";
-            label = "Home Row Mods Left";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
+ZMK_HOME_ROW_MODS(hml, KEYS_RIGHT THUMBS)
+ZMK_HOME_ROW_MODS(hmr, KEYS_LEFT THUMBS)
 
-            flavor = "balanced";
-            tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <HM_QUICK_TAP>;
-            require-prior-idle-ms = <HM_PRIOR_IDLE>;
-            hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
-            hold-trigger-on-release;
-        };
-
-        hrm_l: homerow_mods_left {
-            compatible = "zmk,behavior-hold-tap";
-            label = "Home Row Mods Left";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-
-            flavor = "balanced";
-            tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <HM_QUICK_TAP>;
-            require-prior-idle-ms = <0>;
-            hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
-            hold-trigger-on-release;
-        };
-
-        hrm_rd: homerow_mods_right_delay {
-            compatible = "zmk,behavior-hold-tap";
-            label = "Home Row Mods Right";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-
-            flavor = "balanced";
-            tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <HM_QUICK_TAP>;
-            require-prior-idle-ms = <HM_PRIOR_IDLE>;
-            hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
-            hold-trigger-on-release;
-        };
-
-        hrm_r: homerow_mods_right {
-            compatible = "zmk,behavior-hold-tap";
-            label = "Home Row Mods Right";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-
-            flavor = "balanced";
-            tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <HM_QUICK_TAP>;
-            require-prior-idle-ms = <0>;
-            hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
-            hold-trigger-on-release;
-        };
-
-        kp_sep: kp_seperator {
-            compatible = "zmk,behavior-mod-morph";
-            label = "Keypad Seperator";
-            bindings = <&kp KP_COMMA>, <&kp KP_DOT>;
-
-            #binding-cells = <0>;
-            mods = <(MOD_LSFT)>;
-        };
-    };
-};
-
+ZMK_MOD_MORPH(kp_sep,
+    mods = <(MOD_LSFT)>;
+    bindings = <&kp KP_COMMA>, <&kp KP_DOT>;
+)
 
 ZMK_LAYER(default_layer,
   &kp DE_Q        &kp DE_W        &kp DE_E        &kp DE_R        &kp DE_T           &kp DE_Z          &kp DE_U        &kp DE_I              &kp DE_O        &kp DE_P
