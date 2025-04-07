@@ -50,52 +50,54 @@ ZMK_MOD_MORPH(kp_sep,
 )
 
 ZMK_LAYER(default_layer,
-  &kp DE_Q        &kp DE_W        &kp DE_E         &kp DE_R         &kp DE_T           &kp DE_Z          &kp DE_U         &kp DE_I              &kp DE_O        &kp DE_P
-  &hml LGUI DE_A  &hml LALT DE_S  &hml LSHFT DE_D  &hml LCTRL DE_F  &kp DE_G           &kp DE_H          &hmr LCTRL DE_J  &hmr LSHFT DE_K       &hmr LALT DE_L  &hmr LGUI DE_PLUS
-  &kp DE_Y        &kp DE_X        &kp DE_C         &kp DE_V         &kp DE_B           &kp DE_N          &kp DE_M         &kp DE_COMMA          &kp DE_DOT      &kp DE_MINUS
-                                  &lt NUMBER TAB   &kp SPACE        &lt FUNC ESCAPE    &lt MEDIA DELETE  &kp ENTER        &lt SYMBOL BACKSPACE
+    &kp DE_Q        &kp DE_W        &kp DE_E         &kp DE_R         &kp DE_T           &kp DE_Z          &kp DE_U         &kp DE_I              &kp DE_O        &kp DE_P
+    &hml LGUI DE_A  &hml LALT DE_S  &hml LSHFT DE_D  &hml LCTRL DE_F  &kp DE_G           &kp DE_H          &hmr LCTRL DE_J  &hmr LSHFT DE_K       &hmr LALT DE_L  &hmr LGUI DE_PLUS
+    &kp DE_Y        &kp DE_X        &kp DE_C         &kp DE_V         &kp DE_B           &kp DE_N          &kp DE_M         &kp DE_COMMA          &kp DE_DOT      &kp DE_MINUS
+                                    &lt NUMBER TAB   &kp SPACE        &lt FUNC ESCAPE    &lt MEDIA DELETE  &kp ENTER        &lt SYMBOL BACKSPACE
 )
 
 ZMK_LAYER(number_layer,
-  &kp LC(HOME)       &kp HOME        &kp PRINTSCREEN      &kp PAGE_UP           &none     &kp KP_DIVIDE    &kp KP_NUMBER_7         &kp KP_NUMBER_8         &kp KP_NUMBER_9        &kp KP_MINUS
-  &hml LGUI LC(END)  &hml LALT END   &hml LSHFT UP_ARROW  &hml LCTRL PAGE_DOWN  &none     &kp KP_MULTIPLY  &hmr LCTRL KP_NUMBER_4  &hmr LSHFT KP_NUMBER_5  &hmr LALT KP_NUMBER_6  &hmr LGUI KP_PLUS
-  &none              &kp LEFT_ARROW  &kp DOWN_ARROW       &kp RIGHT_ARROW       &none     &kp KP_NUMBER_0  &kp KP_NUMBER_1         &kp KP_NUMBER_2         &kp KP_NUMBER_3        &kp_sep
-                                     &trans               &trans                &trans    &trans           &trans                  &trans
+    &kp LC(HOME)       &kp HOME        &kp PRINTSCREEN      &kp PAGE_UP           &none     &kp KP_DIVIDE    &kp KP_NUMBER_7         &kp KP_NUMBER_8         &kp KP_NUMBER_9        &kp KP_MINUS
+    &hml LGUI LC(END)  &hml LALT END   &hml LSHFT UP_ARROW  &hml LCTRL PAGE_DOWN  &none     &kp KP_MULTIPLY  &hmr LCTRL KP_NUMBER_4  &hmr LSHFT KP_NUMBER_5  &hmr LALT KP_NUMBER_6  &hmr LGUI KP_PLUS
+    &none              &kp LEFT_ARROW  &kp DOWN_ARROW       &kp RIGHT_ARROW       &none     &kp KP_NUMBER_0  &kp KP_NUMBER_1         &kp KP_NUMBER_2         &kp KP_NUMBER_3        &kp_sep
+                                       &trans               &trans                &trans    &trans           &trans                  &trans
 )
 
 ZMK_LAYER(symbol_layer,
-  &kp DE_EXCL   &kp DE_QUESTION       &kp DE_SECTION       &kp DE_DOLLAR            &kp DE_PERCENT      &kp DE_AMPERSAND     &kp DE_AT_SIGN            &kp DE_EURO         &kp DE_CARET          &kp DE_ASTERISK
-  &kp DE_SLASH  &kp DE_LEFT_BRACKET   &kp DE_LEFT_BRACE    &kp DE_LEFT_PARENTHESIS  &kp DE_LESS_THAN    &kp DE_GREATER_THAN  &kp DE_RIGHT_PARENTHESIS  &kp DE_RIGHT_BRACE  &kp DE_RIGHT_BRACKET  &kp DE_BACKSLASH
-  &kp DE_PIPE   &kp DE_DOUBLE_QUOTES  &kp DE_SINGLE_QUOTE  &kp DE_ACUTE             &kp DE_GRAVE        &kp DE_CARET         &kp DE_DEGREE             &kp DE_TILDE        &kp DE_HASH           &kp DE_EQUAL
-                                      &trans               &trans                   &trans              &trans               &trans                    &trans
+    &kp DE_EXCL   &kp DE_QUESTION       &kp DE_SECTION       &kp DE_DOLLAR            &kp DE_PERCENT      &kp DE_AMPERSAND     &kp DE_AT_SIGN            &kp DE_EURO         &kp DE_CARET          &kp DE_ASTERISK
+    &kp DE_SLASH  &kp DE_LEFT_BRACKET   &kp DE_LEFT_BRACE    &kp DE_LEFT_PARENTHESIS  &kp DE_LESS_THAN    &kp DE_GREATER_THAN  &kp DE_RIGHT_PARENTHESIS  &kp DE_RIGHT_BRACE  &kp DE_RIGHT_BRACKET  &kp DE_BACKSLASH
+    &kp DE_PIPE   &kp DE_DOUBLE_QUOTES  &kp DE_SINGLE_QUOTE  &kp DE_ACUTE             &kp DE_GRAVE        &kp DE_CARET         &kp DE_DEGREE             &kp DE_TILDE        &kp DE_HASH           &kp DE_EQUAL
+                                        &trans               &trans                   &trans              &trans               &trans                    &trans
 )
 
 ZMK_LAYER(func_layer,
-  &kp LC(LS(DE_T))  &kp LC(LS(DE_W))  &kp LC(DE_N7)     &kp LC(F5)        &kp LC(DE_Z)    &kp KP_NUMLOCK  &kp F1  &kp F2   &kp F3   &kp F4
-  &kp LC(DE_A)      &kp LC(LS(DE_X))  &kp LC(LS(DE_C))  &kp LC(LS(DE_V))  &kp LC(DE_F)    &kp CAPSLOCK    &kp F5  &kp F6   &kp F7   &kp F8
-  &kp LC(DE_S)      &kp LC(DE_X)      &kp LC(DE_C)      &kp LC(DE_V)      &kp LC(DE_H)    &caps_word      &kp F9  &kp F10  &kp F11  &kp F12
-                                      &trans                  &trans      &trans          &trans          &trans  &trans
+    &kp LC(LS(DE_T))  &kp LC(LS(DE_W))  &kp LC(DE_N7)     &kp LC(F5)        &kp LC(DE_Z)    &kp KP_NUMLOCK  &kp F1  &kp F2   &kp F3   &kp F4
+    &kp LC(DE_A)      &kp LC(LS(DE_X))  &kp LC(LS(DE_C))  &kp LC(LS(DE_V))  &kp LC(DE_F)    &kp CAPSLOCK    &kp F5  &kp F6   &kp F7   &kp F8
+    &kp LC(DE_S)      &kp LC(DE_X)      &kp LC(DE_C)      &kp LC(DE_V)      &kp LC(DE_H)    &caps_word      &kp F9  &kp F10  &kp F11  &kp F12
+                                        &trans            &trans            &trans          &trans          &trans  &trans
 )
 
 ZMK_LAYER(media_layer,
-  &none  &none  &none   &none   &none     &none   &none              &none             &none         &none
-  &none  &none  &none   &none   &none     &none   &kp C_VOLUME_DOWN  &kp C_MUTE        &kp C_VOL_UP  &none
-  &none  &none  &none   &none   &none     &none   &kp C_PREV         &kp C_PLAY_PAUSE  &kp C_NEXT    &none
-                &trans  &trans  &trans    &trans  &trans             &trans
+    &none  &none  &none   &none   &none     &none   &none              &none             &none         &none
+    &none  &none  &none   &none   &none     &none   &kp C_VOLUME_DOWN  &kp C_MUTE        &kp C_VOL_UP  &none
+    &none  &none  &none   &none   &none     &none   &kp C_PREV         &kp C_PLAY_PAUSE  &kp C_NEXT    &none
+                  &trans  &trans  &trans    &trans  &trans             &trans
 )
 
 ZMK_LAYER(system_layer,
-  &none        &none  &none   &none   &none     &none         &none         &none         &none         &none
-  &sys_reset   &none  &none   &none   &none     &out OUT_BLE  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &sys_reset
-  &bootloader  &none  &none   &none   &none     &out OUT_USB  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR    &bootloader
-                      &trans  &trans  &trans    &trans        &trans        &trans
+    &none        &none  &none   &none   &none     &none         &none         &none         &none         &none
+    &sys_reset   &none  &none   &none   &none     &out OUT_BLE  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &sys_reset
+    &bootloader  &none  &none   &none   &none     &out OUT_USB  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR    &bootloader
+                        &trans  &trans  &trans    &trans        &trans        &trans
 )
 
 
-ZMK_COMBO_4(eszett,   &kp DE_ESZETT,   LM3 RM3, DEFAULT)
-ZMK_COMBO_4(umlaut_a, &kp DE_A_UMLAUT, LM4 RM3, DEFAULT)
-ZMK_COMBO_4(umlaut_o, &kp DE_O_UMLAUT, LM3 RT3, DEFAULT)
-ZMK_COMBO_4(umlaut_u, &kp DE_U_UMLAUT, LM3 RT1, DEFAULT)
-ZMK_COMBO_3(suspend,  &kp C_SLEEP,     LM0 RM0)
+ZMK_COMBO_4(eszett,      &kp DE_ESZETT,   LM3 RM3, DEFAULT)
+ZMK_COMBO_4(umlaut_a,    &kp DE_A_UMLAUT, LM4 RM3, DEFAULT)
+ZMK_COMBO_4(umlaut_o,    &kp DE_O_UMLAUT, LM3 RT3, DEFAULT)
+ZMK_COMBO_4(umlaut_u,    &kp DE_U_UMLAUT, LM3 RT1, DEFAULT)
+ZMK_COMBO_4(shift_left,  &kp LEFT_SHIFT,  LM2 LM1, DEFAULT)
+ZMK_COMBO_4(shift_right, &kp LEFT_SHIFT,  RM1 RM2, DEFAULT)
+ZMK_COMBO_3(suspend,     &kp C_SLEEP,     LM0 RM0)
 
 ZMK_CONDITIONAL_LAYER(system, FUNC MEDIA, SYSTEM)
