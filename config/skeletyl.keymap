@@ -38,6 +38,10 @@
     require-prior-idle-ms = <120>;
 };
 
+&caps_word {
+    continue-list = <UNDERSCORE>;
+};
+
 / {
     behaviors {
         hrm_ld: homerow_mods_left_delay {
