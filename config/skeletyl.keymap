@@ -21,15 +21,15 @@
 #define HM_QUICK_TAP 240
 #define HM_PRIOR_IDLE 120
         
-#define HRM_LGIU(keycode)    &hrm_ld LEFT_GUI keycode
-#define HRM_LALT(keycode)    &hrm_ld LEFT_ALT keycode
-#define HRM_LSFT(keycode)    &hrm_l  LEFT_SHIFT keycode
-#define HRM_LCTL(keycode)    &hrm_ld LEFT_CONTROL keycode
+#define HRM_LGIU(keycode)    &hrm_left LEFT_GUI keycode
+#define HRM_LALT(keycode)    &hrm_left LEFT_ALT keycode
+#define HRM_LSFT(keycode)    &hrm_left LEFT_SHIFT keycode
+#define HRM_LCTL(keycode)    &hrm_left LEFT_CONTROL keycode
 
-#define HRM_RCTL(keycode)    &hrm_rd LEFT_CONTROL keycode
-#define HRM_RSFT(keycode)    &hrm_r  LEFT_SHIFT keycode
-#define HRM_RALT(keycode)    &hrm_rd LEFT_ALT keycode
-#define HRM_RGIU(keycode)    &hrm_rd LEFT_GUI keycode
+#define HRM_RCTL(keycode)    &hrm_right LEFT_CONTROL keycode
+#define HRM_RSFT(keycode)    &hrm_right LEFT_SHIFT keycode
+#define HRM_RALT(keycode)    &hrm_right LEFT_ALT keycode
+#define HRM_RGIU(keycode)    &hrm_right LEFT_GUI keycode
 
 &lt {
     tapping-term-ms = <280>;
@@ -40,7 +40,7 @@
 
 / {
     behaviors {
-        hrm_ld: homerow_mods_left_delay {
+        hrm_left: homerow_mods_left {
             compatible = "zmk,behavior-hold-tap";
             label = "Home Row Mods Left";
             #binding-cells = <2>;
@@ -54,21 +54,7 @@
             hold-trigger-on-release;
         };
 
-        hrm_l: homerow_mods_left {
-            compatible = "zmk,behavior-hold-tap";
-            label = "Home Row Mods Left";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-
-            flavor = "balanced";
-            tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <HM_QUICK_TAP>;
-            require-prior-idle-ms = <0>;
-            hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
-            hold-trigger-on-release;
-        };
-
-        hrm_rd: homerow_mods_right_delay {
+        hrm_right: homerow_mods_right {
             compatible = "zmk,behavior-hold-tap";
             label = "Home Row Mods Right";
             #binding-cells = <2>;
@@ -78,20 +64,6 @@
             tapping-term-ms = <HM_TAPPING_TERM>;
             quick-tap-ms = <HM_QUICK_TAP>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
-            hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
-            hold-trigger-on-release;
-        };
-
-        hrm_r: homerow_mods_right {
-            compatible = "zmk,behavior-hold-tap";
-            label = "Home Row Mods Right";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-
-            flavor = "balanced";
-            tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <HM_QUICK_TAP>;
-            require-prior-idle-ms = <0>;
             hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
             hold-trigger-on-release;
         };
@@ -136,6 +108,22 @@
         umlaut_u {
             bindings = <&kp DE_U_UMLAUT>;
             key-positions = <6 11>;
+            timeout-ms = <75>;
+            slow-release;
+            layers = <DEFAULT>;
+        };
+
+        left_shift {
+            bindings = <&kp LEFT_SHIFT>;
+            key-positions = <12 13>;
+            timeout-ms = <75>;
+            slow-release;
+            layers = <DEFAULT>;
+        };
+
+        right_shift {
+            bindings = <&kp LEFT_SHIFT>;
+            key-positions = <16 17>;
             timeout-ms = <75>;
             slow-release;
             layers = <DEFAULT>;
