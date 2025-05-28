@@ -38,6 +38,10 @@
     require-prior-idle-ms = <120>;
 };
 
+&caps_word {
+    continue-list = <LS(DE_MINUS) DE_MINUS>;
+};
+
 / {
     behaviors {
         hrm_left: homerow_mods_left {
@@ -74,7 +78,7 @@
             bindings = <&kp KP_COMMA>, <&kp KP_DOT>;
 
             #binding-cells = <0>;
-            mods = <(MOD_LSFT)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
         };
     };
 
