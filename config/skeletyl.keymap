@@ -3,10 +3,8 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <locale/keys_de.h>
-
-// The default keymap is roughly on Miryoku layout
-// (https://github.com/manna-harbour/miryoku).
-// Customize on your own on the config folder.
+#include <zmk-helpers/helper.h>
+#include <zmk-helpers/key-labels/36.h>
 
 #define DEFAULT     0
 #define NUMBER      1
@@ -14,201 +12,95 @@
 #define FUNC        3
 #define MEDIA       4
 #define SYSTEM      5
-#define KEYS_LEFT   0 1 2 3 4 10 11 12 13 14 20 21 22 23 24
-#define KEYS_RIGHT  5 6 7 8 9 15 16 17 18 19 25 26 27 28 29
-#define THUMBS      30 31 32 33 34 35
-#define HM_TAPPING_TERM 280
-#define HM_QUICK_TAP 240
-#define HM_PRIOR_IDLE 120
-        
-#define HRM_LGIU(keycode)    &hrm_left LEFT_GUI keycode
-#define HRM_LALT(keycode)    &hrm_left LEFT_ALT keycode
-#define HRM_LSFT(keycode)    &hrm_left LEFT_SHIFT keycode
-#define HRM_LCTL(keycode)    &hrm_left LEFT_CONTROL keycode
+#define KEYS_LEFT   LT4 LT3 LT2 LT1 LT0 LM4 LM3 LM2 LM1 LM0 LB4 LB3 LB2 LB1 LB0
+#define KEYS_RIGHT  RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4
+#define THUMBS      LH2 LH1 LH0 RH0 RH1 RH2
 
-#define HRM_RCTL(keycode)    &hrm_right LEFT_CONTROL keycode
-#define HRM_RSFT(keycode)    &hrm_right LEFT_SHIFT keycode
-#define HRM_RALT(keycode)    &hrm_right LEFT_ALT keycode
-#define HRM_RGIU(keycode)    &hrm_right LEFT_GUI keycode
+#define ZMK_HOME_ROW_MODS(name, keys) \
+/ { \
+    behaviors { \
+        name: name { \
+            compatible = "zmk,behavior-hold-tap"; \
+            #binding-cells = <2>; \
+            flavor = "balanced"; \
+            tapping-term-ms = <280>; \
+            quick-tap-ms = <240>; \
+            require-prior-idle-ms = <120>; \
+            hold-trigger-key-positions = <keys>; \
+            hold-trigger-on-release; \
+            bindings = <&kp>, <&kp>; \
+        }; \
+    }; \
+};
 
 &lt {
-    tapping-term-ms = <280>;
     flavor = "hold-preferred";
+    tapping-term-ms = <280>;
     quick-tap-ms = <240>;
     require-prior-idle-ms = <120>;
 };
+
 
 &caps_word {
     continue-list = <LS(DE_MINUS) DE_MINUS>;
 };
 
-/ {
-    behaviors {
-        hrm_left: homerow_mods_left {
-            compatible = "zmk,behavior-hold-tap";
-            label = "Home Row Mods Left";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
+ZMK_HOME_ROW_MODS(hml, KEYS_RIGHT THUMBS)
+ZMK_HOME_ROW_MODS(hmr, KEYS_LEFT THUMBS)
 
-            flavor = "balanced";
-            tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <HM_QUICK_TAP>;
-            require-prior-idle-ms = <HM_PRIOR_IDLE>;
-            hold-trigger-key-positions = <KEYS_RIGHT THUMBS>;
-            hold-trigger-on-release;
-        };
+ZMK_MOD_MORPH(kp_sep,
+    mods = <(MOD_LSFT)>;
+    bindings = <&kp KP_COMMA>, <&kp KP_DOT>;
+)
 
-        hrm_right: homerow_mods_right {
-            compatible = "zmk,behavior-hold-tap";
-            label = "Home Row Mods Right";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
+ZMK_COMBO_4(eszett,      &kp DE_ESZETT,   LM3 RM3, DEFAULT)
+ZMK_COMBO_4(umlaut_a,    &kp DE_A_UMLAUT, LM4 RM3, DEFAULT)
+ZMK_COMBO_4(umlaut_o,    &kp DE_O_UMLAUT, LM3 RT3, DEFAULT)
+ZMK_COMBO_4(umlaut_u,    &kp DE_U_UMLAUT, LM3 RT1, DEFAULT)
+ZMK_COMBO_4(shift_left,  &kp LEFT_SHIFT,  LM2 LM1, DEFAULT)
+ZMK_COMBO_4(shift_right, &kp LEFT_SHIFT,  RM1 RM2, DEFAULT)
+ZMK_COMBO_3(suspend,     &kp C_SLEEP,     LM0 RM0)
 
-            flavor = "balanced";
-            tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <HM_QUICK_TAP>;
-            require-prior-idle-ms = <HM_PRIOR_IDLE>;
-            hold-trigger-key-positions = <KEYS_LEFT THUMBS>;
-            hold-trigger-on-release;
-        };
+ZMK_LAYER(default_layer,
+    &kp DE_Q        &kp DE_W        &kp DE_E         &kp DE_R         &kp DE_T           &kp DE_Z          &kp DE_U         &kp DE_I              &kp DE_O        &kp DE_P
+    &hml LGUI DE_A  &hml LALT DE_S  &hml LSHFT DE_D  &hml LCTRL DE_F  &kp DE_G           &kp DE_H          &hmr LCTRL DE_J  &hmr LSHFT DE_K       &hmr LALT DE_L  &hmr LGUI DE_PLUS
+    &kp DE_Y        &kp DE_X        &kp DE_C         &kp DE_V         &kp DE_B           &kp DE_N          &kp DE_M         &kp DE_COMMA          &kp DE_DOT      &kp DE_MINUS
+                                    &lt NUMBER TAB   &kp SPACE        &lt FUNC ESCAPE    &lt MEDIA DELETE  &kp ENTER        &lt SYMBOL BACKSPACE
+)
 
-        kp_sep: kp_seperator {
-            compatible = "zmk,behavior-mod-morph";
-            label = "Keypad Seperator";
-            bindings = <&kp KP_COMMA>, <&kp KP_DOT>;
+ZMK_LAYER(number_layer,
+    &kp LC(HOME)       &kp HOME        &kp PRINTSCREEN      &kp PAGE_UP           &none     &kp KP_DIVIDE    &kp KP_NUMBER_7         &kp KP_NUMBER_8         &kp KP_NUMBER_9        &kp KP_MINUS
+    &hml LGUI LC(END)  &hml LALT END   &hml LSHFT UP_ARROW  &hml LCTRL PAGE_DOWN  &none     &kp KP_MULTIPLY  &hmr LCTRL KP_NUMBER_4  &hmr LSHFT KP_NUMBER_5  &hmr LALT KP_NUMBER_6  &hmr LGUI KP_PLUS
+    &none              &kp LEFT_ARROW  &kp DOWN_ARROW       &kp RIGHT_ARROW       &none     &kp KP_NUMBER_0  &kp KP_NUMBER_1         &kp KP_NUMBER_2         &kp KP_NUMBER_3        &kp_sep
+                                       &trans               &trans                &trans    &trans           &trans                  &trans
+)
 
-            #binding-cells = <0>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-    };
+ZMK_LAYER(symbol_layer,
+    &kp DE_EXCL   &kp DE_QUESTION       &kp DE_SECTION       &kp DE_DOLLAR            &kp DE_PERCENT      &kp DE_AMPERSAND     &kp DE_AT_SIGN            &kp DE_EURO         &kp DE_CARET          &kp DE_ASTERISK
+    &kp DE_SLASH  &kp DE_LEFT_BRACKET   &kp DE_LEFT_BRACE    &kp DE_LEFT_PARENTHESIS  &kp DE_LESS_THAN    &kp DE_GREATER_THAN  &kp DE_RIGHT_PARENTHESIS  &kp DE_RIGHT_BRACE  &kp DE_RIGHT_BRACKET  &kp DE_BACKSLASH
+    &kp DE_PIPE   &kp DE_DOUBLE_QUOTES  &kp DE_SINGLE_QUOTE  &kp DE_ACUTE             &kp DE_GRAVE        &kp DE_CARET         &kp DE_DEGREE             &kp DE_TILDE        &kp DE_HASH           &kp DE_EQUAL
+                                        &trans               &trans                   &trans              &trans               &trans                    &trans
+)
 
-    combos {
-        compatible = "zmk,combos";
+ZMK_LAYER(func_layer,
+    &kp LC(LS(DE_T))  &kp LC(LS(DE_W))  &kp LC(DE_N7)     &kp LC(F5)        &kp LC(DE_Z)    &kp KP_NUMLOCK  &kp F1  &kp F2   &kp F3   &kp F4
+    &kp LC(DE_A)      &kp LC(LS(DE_X))  &kp LC(LS(DE_C))  &kp LC(LS(DE_V))  &kp LC(DE_F)    &kp CAPSLOCK    &kp F5  &kp F6   &kp F7   &kp F8
+    &kp LC(DE_S)      &kp LC(DE_X)      &kp LC(DE_C)      &kp LC(DE_V)      &kp LC(DE_H)    &caps_word      &kp F9  &kp F10  &kp F11  &kp F12
+                                        &trans            &trans            &trans          &trans          &trans  &trans
+)
 
-        eszett {
-            bindings = <&kp DE_ESZETT>;
-            key-positions = <11 18>;
-            timeout-ms = <75>;
-            slow-release;
-            layers = <DEFAULT>;
-        };
+ZMK_LAYER(media_layer,
+    &none  &none  &none   &none   &none     &none   &none              &none             &none         &none
+    &none  &none  &none   &none   &none     &none   &kp C_VOLUME_DOWN  &kp C_MUTE        &kp C_VOL_UP  &none
+    &none  &none  &none   &none   &none     &none   &kp C_PREV         &kp C_PLAY_PAUSE  &kp C_NEXT    &none
+                  &trans  &trans  &trans    &trans  &trans             &trans
+)
 
-        umlaut_a {
-            bindings = <&kp DE_A_UMLAUT>;
-            key-positions = <10 18>;
-            timeout-ms = <75>;
-            slow-release;
-            layers = <DEFAULT>;
-        };
+ZMK_LAYER(system_layer,
+    &none        &none  &none   &none   &none     &none         &none         &none         &none         &none
+    &sys_reset   &none  &none   &none   &none     &out OUT_BLE  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &sys_reset
+    &bootloader  &none  &none   &none   &none     &out OUT_USB  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR    &bootloader
+                        &trans  &trans  &trans    &trans        &trans        &trans
+)
 
-        umlaut_o {
-            bindings = <&kp DE_O_UMLAUT>;
-            key-positions = <8 11>;
-            timeout-ms = <75>;
-            slow-release;
-            layers = <DEFAULT>;
-        };
-
-        umlaut_u {
-            bindings = <&kp DE_U_UMLAUT>;
-            key-positions = <6 11>;
-            timeout-ms = <75>;
-            slow-release;
-            layers = <DEFAULT>;
-        };
-
-        left_shift {
-            bindings = <&kp LEFT_SHIFT>;
-            key-positions = <12 13>;
-            timeout-ms = <75>;
-            slow-release;
-            layers = <DEFAULT>;
-        };
-
-        right_shift {
-            bindings = <&kp LEFT_SHIFT>;
-            key-positions = <16 17>;
-            timeout-ms = <75>;
-            slow-release;
-            layers = <DEFAULT>;
-        };
-
-        suspend {
-            bindings = <&kp C_SLEEP>;
-            key-positions = <14 15>;
-        };
-    };
-
-    keymap {
-        compatible = "zmk,keymap";
-
-        default_layer {
-            display-name = "";
-            bindings = <
-  &kp DE_Q        &kp DE_W        &kp DE_E        &kp DE_R        &kp DE_T           &kp DE_Z          &kp DE_U        &kp DE_I              &kp DE_O        &kp DE_P
-  HRM_LGIU(DE_A)  HRM_LALT(DE_S)  HRM_LSFT(DE_D)  HRM_LCTL(DE_F)  &kp DE_G           &kp DE_H          HRM_RCTL(DE_J)  HRM_RSFT(DE_K)        HRM_RALT(DE_L)  HRM_RGIU(DE_PLUS)
-  &kp DE_Y        &kp DE_X        &kp DE_C        &kp DE_V        &kp DE_B           &kp DE_N          &kp DE_M        &kp DE_COMMA          &kp DE_DOT      &kp DE_MINUS
-                                  &lt NUMBER TAB  &kp SPACE       &lt FUNC ESCAPE    &lt MEDIA DELETE  &kp ENTER       &lt SYMBOL BACKSPACE
-            >;
-        };
-
-        number_layer {
-            display-name = "NUMBER";
-            bindings = <
-  &kp LC(HOME)       &kp HOME        &kp PRINTSCREEN     &kp PAGE_UP          &none     &kp KP_DIVIDE    &kp KP_NUMBER_7        &kp KP_NUMBER_8        &kp KP_NUMBER_9        &kp KP_MINUS
-  HRM_LGIU(LC(END))  HRM_LALT(END)   HRM_LSFT(UP_ARROW)  HRM_LCTL(PAGE_DOWN)  &none     &kp KP_MULTIPLY  HRM_RCTL(KP_NUMBER_4)  HRM_RSFT(KP_NUMBER_5)  HRM_RALT(KP_NUMBER_6)  HRM_RGIU(KP_PLUS)
-  &none              &kp LEFT_ARROW  &kp DOWN_ARROW      &kp RIGHT_ARROW      &none     &kp KP_NUMBER_0  &kp KP_NUMBER_1        &kp KP_NUMBER_2        &kp KP_NUMBER_3        &kp_sep
-                                     &trans              &trans               &trans    &trans           &trans                 &trans
-            >;
-        };
-
-        symbol_layer {
-            display-name = "SYMBOL";
-            bindings = <
-  &kp DE_EXCL   &kp DE_QUESTION       &kp DE_SECTION       &kp DE_DOLLAR            &kp DE_PERCENT      &kp DE_AMPERSAND     &kp DE_AT_SIGN            &kp DE_EURO         &kp DE_CARET          &kp DE_ASTERISK
-  &kp DE_SLASH  &kp DE_LEFT_BRACKET   &kp DE_LEFT_BRACE    &kp DE_LEFT_PARENTHESIS  &kp DE_LESS_THAN    &kp DE_GREATER_THAN  &kp DE_RIGHT_PARENTHESIS  &kp DE_RIGHT_BRACE  &kp DE_RIGHT_BRACKET  &kp DE_BACKSLASH
-  &kp DE_PIPE   &kp DE_DOUBLE_QUOTES  &kp DE_SINGLE_QUOTE  &kp DE_ACUTE             &kp DE_GRAVE        &kp DE_CARET         &kp DE_DEGREE             &kp DE_TILDE        &kp DE_HASH           &kp DE_EQUAL
-                                      &trans               &trans                   &trans              &trans               &trans                    &trans
-            >;
-        };
-
-        func_layer {
-            display-name = "FUNC";
-            bindings = <
-  &kp LC(LS(DE_T))  &kp LC(LS(DE_W))  &kp LC(DE_N7)     &kp LC(F5)        &kp LC(DE_Z)    &kp KP_NUMLOCK  &kp F1  &kp F2   &kp F3   &kp F4
-  &kp LC(DE_A)      &kp LC(LS(DE_X))  &kp LC(LS(DE_C))  &kp LC(LS(DE_V))  &kp LC(DE_F)    &kp CAPSLOCK    &kp F5  &kp F6   &kp F7   &kp F8
-  &kp LC(DE_S)      &kp LC(DE_X)      &kp LC(DE_C)      &kp LC(DE_V)      &kp LC(DE_H)    &caps_word      &kp F9  &kp F10  &kp F11  &kp F12
-                                      &trans                  &trans      &trans          &trans          &trans  &trans
-            >;
-        };
-
-        media_layer {
-            display-name = "MEDIA";
-            bindings = <
-  &none  &none  &none   &none   &none     &none   &none              &none             &none         &none
-  &none  &none  &none   &none   &none     &none   &kp C_VOLUME_DOWN  &kp C_MUTE        &kp C_VOL_UP  &none
-  &none  &none  &none   &none   &none     &none   &kp C_PREV         &kp C_PLAY_PAUSE  &kp C_NEXT    &none
-                &trans  &trans  &trans    &trans  &trans             &trans
-            >;
-        };
-
-        system_layer {
-            display-name = "SYSTEM";
-            bindings = <
-  &none        &none  &none   &none   &none     &none         &none         &none         &none         &none
-  &sys_reset   &none  &none   &none   &none     &out OUT_BLE  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &sys_reset
-  &bootloader  &none  &none   &none   &none     &out OUT_USB  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR    &bootloader
-                      &trans  &trans  &trans    &trans        &trans        &trans
-            >;
-        };
-    };
-
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-
-        two_handed {
-            if-layers = <FUNC MEDIA>;
-            then-layer = <SYSTEM>;
-        };
-    };
-};
+ZMK_CONDITIONAL_LAYER(system, FUNC MEDIA, SYSTEM)

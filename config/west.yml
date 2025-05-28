@@ -4,6 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: joelspadin
       url-base: https://github.com/joelspadin
+    - name: urob
+      url-base: https://github.com/urob
     - name: s6t
       url-base: https://github.com/s6t
   projects:
@@ -13,6 +15,9 @@ manifest:
       import: app/west.yml
     - name: zmk-locales
       remote: joelspadin
+      revision: main
+    - name: zmk-helpers
+      remote: urob
       revision: main
     - name: zmk-shield-skeletyl
       remote: s6t
