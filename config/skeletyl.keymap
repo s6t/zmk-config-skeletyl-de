@@ -38,6 +38,10 @@
     require-prior-idle-ms = <120>;
 };
 
+&caps_word {
+    continue-list = <LS(DE_MINUS) DE_MINUS>;
+};
+
 / {
     behaviors {
         hrm_ld: homerow_mods_left_delay {
@@ -104,15 +108,6 @@
             #binding-cells = <0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
-
-        minus: minus_and_underscore {
-            compatible = "zmk,behavior-mod-morph";
-            label = "Minus and Underscore";
-            bindings = <&kp DE_MINUS>, <&kp UNDERSCORE>;
-
-            #binding-cells = <0>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;        
-        };
     };
 
     combos {
@@ -164,7 +159,7 @@
             bindings = <
   &kp DE_Q        &kp DE_W        &kp DE_E        &kp DE_R        &kp DE_T           &kp DE_Z          &kp DE_U        &kp DE_I              &kp DE_O        &kp DE_P
   HRM_LGIU(DE_A)  HRM_LALT(DE_S)  HRM_LSFT(DE_D)  HRM_LCTL(DE_F)  &kp DE_G           &kp DE_H          HRM_RCTL(DE_J)  HRM_RSFT(DE_K)        HRM_RALT(DE_L)  HRM_RGIU(DE_PLUS)
-  &kp DE_Y        &kp DE_X        &kp DE_C        &kp DE_V        &kp DE_B           &kp DE_N          &kp DE_M        &kp DE_COMMA          &kp DE_DOT      &minus
+  &kp DE_Y        &kp DE_X        &kp DE_C        &kp DE_V        &kp DE_B           &kp DE_N          &kp DE_M        &kp DE_COMMA          &kp DE_DOT      &kp DE_MINUS
                                   &lt NUMBER TAB  &kp SPACE       &lt FUNC ESCAPE    &lt MEDIA DELETE  &kp ENTER       &lt SYMBOL BACKSPACE
             >;
         };
