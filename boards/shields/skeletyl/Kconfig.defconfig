@@ -1,4 +1,4 @@
-if SHIELD_DONGLE
+if SHIELD_SKELETYL_DONGLE
 
 # Max 16 characters in keyboard name
 config ZMK_KEYBOARD_NAME
