@@ -40,6 +40,9 @@
     require-prior-idle-ms = <120>;
 };
 
+&sk {
+    quick-release;
+};
 
 &caps_word {
     continue-list = <LS(DE_MINUS) DE_MINUS>;
@@ -57,8 +60,8 @@ ZMK_COMBO_4(eszett,      &kp DE_ESZETT,   LM3 RM3, DEFAULT)
 ZMK_COMBO_4(umlaut_a,    &kp DE_A_UMLAUT, LM4 RM3, DEFAULT)
 ZMK_COMBO_4(umlaut_o,    &kp DE_O_UMLAUT, LM3 RT3, DEFAULT)
 ZMK_COMBO_4(umlaut_u,    &kp DE_U_UMLAUT, LM3 RT1, DEFAULT)
-ZMK_COMBO_4(shift_left,  &kp LEFT_SHIFT,  LM2 LM1, DEFAULT)
-ZMK_COMBO_4(shift_right, &kp LEFT_SHIFT,  RM1 RM2, DEFAULT)
+ZMK_COMBO_4(shift_left,  &sk LEFT_SHIFT,  LM2 LM1, DEFAULT)
+ZMK_COMBO_4(shift_right, &sk LEFT_SHIFT,  RM1 RM2, DEFAULT)
 ZMK_COMBO_3(suspend,     &kp C_SLEEP,     LM0 RM0)
 
 ZMK_LAYER(default_layer,
