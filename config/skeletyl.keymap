@@ -100,10 +100,10 @@ ZMK_LAYER(media_layer,
 )
 
 ZMK_LAYER(system_layer,
-    &none        &none  &none   &none   &none     &none         &none         &none         &none         &none
-    &sys_reset   &none  &none   &none   &none     &out OUT_BLE  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &sys_reset
-    &bootloader  &none  &none   &none   &none     &out OUT_USB  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR    &bootloader
-                        &trans  &trans  &trans    &trans        &trans        &trans
+    &none        &none  &none   &none   &none     &studio_unlock  &none         &none         &none         &none
+    &sys_reset   &none  &none   &none   &none     &out OUT_BLE    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &sys_reset
+    &bootloader  &none  &none   &none   &none     &out OUT_USB    &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR    &bootloader
+                        &trans  &trans  &trans    &trans          &trans        &trans
 )
 
 ZMK_CONDITIONAL_LAYER(system, FUNC MEDIA, SYSTEM)
