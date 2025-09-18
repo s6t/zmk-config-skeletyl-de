@@ -16,16 +16,17 @@
 #define KEYS_RIGHT  RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4
 #define THUMBS      LH2 LH1 LH0 RH0 RH1 RH2
 
-#define ZMK_HOME_ROW_MODS(name, keys) \
+#define ZMK_HOME_ROW_MODS(identifier, description, keys, prior_idle) \
 / { \
     behaviors { \
-        name: name { \
+        identifier: identifier { \
             compatible = "zmk,behavior-hold-tap"; \
+            display-name = description; \
             #binding-cells = <2>; \
             flavor = "balanced"; \
             tapping-term-ms = <280>; \
             quick-tap-ms = <240>; \
-            require-prior-idle-ms = <120>; \
+            require-prior-idle-ms = <prior_idle>; \
             hold-trigger-key-positions = <keys>; \
             hold-trigger-on-release; \
             bindings = <&kp>, <&kp>; \
@@ -48,8 +49,10 @@
     continue-list = <LS(DE_MINUS) DE_MINUS BACKSPACE KP_NUMBER_0 KP_NUMBER_1 KP_NUMBER_2 KP_NUMBER_3 KP_NUMBER_4 KP_NUMBER_5 KP_NUMBER_6 KP_NUMBER_7 KP_NUMBER_8 KP_NUMBER_9>;
 };
 
-ZMK_HOME_ROW_MODS(hml, KEYS_RIGHT THUMBS)
-ZMK_HOME_ROW_MODS(hmr, KEYS_LEFT THUMBS)
+ZMK_HOME_ROW_MODS(hml, "Home Row Mods Left",   KEYS_RIGHT THUMBS, 120)
+ZMK_HOME_ROW_MODS(hsl, "Home Row Shift Left",  KEYS_RIGHT THUMBS, 0)
+ZMK_HOME_ROW_MODS(hmr, "Home Row Mods Right",  KEYS_LEFT THUMBS,  120)
+ZMK_HOME_ROW_MODS(hsr, "Home Row Shift Right", KEYS_LEFT THUMBS,  0)
 
 ZMK_MOD_MORPH(kp_sep,
     mods = <(MOD_LSFT)>;
@@ -66,14 +69,14 @@ ZMK_COMBO_3(suspend,     &kp C_SLEEP,     LM0 RM0)
 
 ZMK_LAYER(default_layer,
     &kp DE_Q        &kp DE_W        &kp DE_E         &kp DE_R         &kp DE_T           &kp DE_Z          &kp DE_U         &kp DE_I              &kp DE_O        &kp DE_P
-    &hml LGUI DE_A  &hml LALT DE_S  &hml LSHFT DE_D  &hml LCTRL DE_F  &kp DE_G           &kp DE_H          &hmr LCTRL DE_J  &hmr LSHFT DE_K       &hmr LALT DE_L  &hmr LGUI DE_PLUS
+    &hml LGUI DE_A  &hml LALT DE_S  &hsl LSHFT DE_D  &hml LCTRL DE_F  &kp DE_G           &kp DE_H          &hmr LCTRL DE_J  &hsr LSHFT DE_K       &hmr LALT DE_L  &hmr LGUI DE_PLUS
     &kp DE_Y        &kp DE_X        &kp DE_C         &kp DE_V         &kp DE_B           &kp DE_N          &kp DE_M         &kp DE_COMMA          &kp DE_DOT      &kp DE_MINUS
                                     &lt NUMBER TAB   &kp SPACE        &lt FUNC ESCAPE    &lt MEDIA DELETE  &kp ENTER        &lt SYMBOL BACKSPACE
 )
 
 ZMK_LAYER(number_layer,
     &kp LC(HOME)       &kp HOME        &kp PRINTSCREEN      &kp PAGE_UP           &none     &kp KP_DIVIDE    &kp KP_NUMBER_7         &kp KP_NUMBER_8         &kp KP_NUMBER_9        &kp KP_MINUS
-    &hml LGUI LC(END)  &hml LALT END   &hml LSHFT UP_ARROW  &hml LCTRL PAGE_DOWN  &none     &kp KP_MULTIPLY  &hmr LCTRL KP_NUMBER_4  &hmr LSHFT KP_NUMBER_5  &hmr LALT KP_NUMBER_6  &hmr LGUI KP_PLUS
+    &hml LGUI LC(END)  &hml LALT END   &hsl LSHFT UP_ARROW  &hml LCTRL PAGE_DOWN  &none     &kp KP_MULTIPLY  &hmr LCTRL KP_NUMBER_4  &hsr LSHFT KP_NUMBER_5  &hmr LALT KP_NUMBER_6  &hmr LGUI KP_PLUS
     &none              &kp LEFT_ARROW  &kp DOWN_ARROW       &kp RIGHT_ARROW       &none     &kp KP_NUMBER_0  &kp KP_NUMBER_1         &kp KP_NUMBER_2         &kp KP_NUMBER_3        &kp_sep
                                        &trans               &trans                &trans    &trans           &trans                  &trans
 )
