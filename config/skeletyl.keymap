@@ -16,23 +16,16 @@
 #define KEYS_RIGHT  RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4
 #define THUMBS      LH2 LH1 LH0 RH0 RH1 RH2
 
-#define ZMK_HOME_ROW_MODS(identifier, description, keys, prior_idle) \
-/ { \
-    behaviors { \
-        identifier: identifier { \
-            compatible = "zmk,behavior-hold-tap"; \
-            display-name = description; \
-            #binding-cells = <2>; \
-            flavor = "balanced"; \
-            tapping-term-ms = <280>; \
-            quick-tap-ms = <240>; \
-            require-prior-idle-ms = <prior_idle>; \
-            hold-trigger-key-positions = <keys>; \
-            hold-trigger-on-release; \
-            bindings = <&kp>, <&kp>; \
-        }; \
-    }; \
-};
+#define ZMK_HOME_ROW_MODS(ident, label, keys, prior_idle) ZMK_BEHAVIOR(ident, hold_tap, \
+    display-name = label; \
+    flavor = "balanced"; \
+    tapping-term-ms = <280>; \
+    quick-tap-ms = <240>; \
+    require-prior-idle-ms = <prior_idle>; \
+    hold-trigger-key-positions = <keys>; \
+    hold-trigger-on-release; \
+    bindings = <&kp>, <&kp>; \
+)
 
 &lt {
     flavor = "hold-preferred";
