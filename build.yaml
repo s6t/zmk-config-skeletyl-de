@@ -20,19 +20,19 @@
 #
 ---
 include:
-  - board: seeeduino_xiao_ble
+  - board: xiao_ble
     shield: skeletyl_dongle
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: skeletyl_dongle
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: skeletyl_left
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: skeletyl_right
-  - board: seeeduino_xiao_ble
+  - board: xiao_ble
     shield: settings_reset
-  - board: nice_nano
+  - board: nice_nano@2.0.0
     shield: settings_reset
