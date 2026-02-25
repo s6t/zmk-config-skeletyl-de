@@ -42,25 +42,25 @@
     continue-list = <LS(DE_MINUS) DE_MINUS BACKSPACE KP_NUMBER_0 KP_NUMBER_1 KP_NUMBER_2 KP_NUMBER_3 KP_NUMBER_4 KP_NUMBER_5 KP_NUMBER_6 KP_NUMBER_7 KP_NUMBER_8 KP_NUMBER_9>;
 };
 
-ZMK_HOME_ROW_MODS(hml, "Home Row Mods Left",   KEYS_RIGHT THUMBS, 120)
-ZMK_HOME_ROW_MODS(hsl, "Home Row Shift Left",  KEYS_RIGHT THUMBS, 0)
-ZMK_HOME_ROW_MODS(hmr, "Home Row Mods Right",  KEYS_LEFT THUMBS,  120)
-ZMK_HOME_ROW_MODS(hsr, "Home Row Shift Right", KEYS_LEFT THUMBS,  0)
+ZMK_HOME_ROW_MODS(hml, "Home Row Mods Left",   KEYS_RIGHT THUMBS,  120)
+ZMK_HOME_ROW_MODS(hsl, "Home Row Shift Left",  KEYS_RIGHT THUMBS, (-1))
+ZMK_HOME_ROW_MODS(hmr, "Home Row Mods Right",  KEYS_LEFT THUMBS,   120)
+ZMK_HOME_ROW_MODS(hsr, "Home Row Shift Right", KEYS_LEFT THUMBS,  (-1))
 
 ZMK_MOD_MORPH(kp_sep,
     mods = <(MOD_LSFT)>;
     bindings = <&kp KP_COMMA>, <&kp KP_DOT>;
 )
 
-ZMK_COMBO_4(eszett,      &kp DE_ESZETT,   LM3 RM3, DEFAULT)
-ZMK_COMBO_4(umlaut_a,    &kp DE_A_UMLAUT, LM4 RM3, DEFAULT)
-ZMK_COMBO_4(umlaut_o,    &kp DE_O_UMLAUT, LM3 RT3, DEFAULT)
-ZMK_COMBO_4(umlaut_u,    &kp DE_U_UMLAUT, LM3 RT1, DEFAULT)
-ZMK_COMBO_4(shift_left,  &sk LEFT_SHIFT,  LM2 LM1, DEFAULT)
-ZMK_COMBO_4(shift_right, &sk LEFT_SHIFT,  RM1 RM2, DEFAULT)
-ZMK_COMBO_3(suspend,     &kp C_SLEEP,     LM0 RM0)
-ZMK_COMBO_4(sys_reset,   &sys_reset,      LM4 RM4, SYSTEM)
-ZMK_COMBO_4(bootloader,  &bootloader,     LB4 RB4, SYSTEM)
+ZMK_COMBO(eszett,      &kp DE_ESZETT,   LM3 RM3, DEFAULT, 50, (-1))
+ZMK_COMBO(umlaut_a,    &kp DE_A_UMLAUT, LM4 RM3, DEFAULT, 50, (-1))
+ZMK_COMBO(umlaut_o,    &kp DE_O_UMLAUT, LM3 RT3, DEFAULT, 50, (-1))
+ZMK_COMBO(umlaut_u,    &kp DE_U_UMLAUT, LM3 RT1, DEFAULT, 50, (-1))
+ZMK_COMBO(shift_left,  &sk LEFT_SHIFT,  LM2 LM1, DEFAULT, 50, (-1))
+ZMK_COMBO(shift_right, &sk RIGHT_SHIFT, RM1 RM2, DEFAULT, 50, (-1))
+ZMK_COMBO(suspend,     &kp C_SLEEP,     LM0 RM0, ALL,     50,  120)
+ZMK_COMBO(sys_reset,   &sys_reset,      LM4 RM4, SYSTEM,  50,  120)
+ZMK_COMBO(bootloader,  &bootloader,     LB4 RB4, SYSTEM,  50,  120)
 
 ZMK_LAYER(default_layer,
     &kp DE_Q        &kp DE_W        &kp DE_E         &kp DE_R         &kp DE_T           &kp DE_Z          &kp DE_U         &kp DE_I              &kp DE_O        &kp DE_P
