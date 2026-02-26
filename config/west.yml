@@ -13,14 +13,12 @@ manifest:
       remote: zmkfirmware
       revision: v0.3
       import: app/west.yml
-    - name: zmk-locales
-      remote: joelspadin
-      revision: main
-    - name: zmk-helpers
-      remote: urob
-      revision: main
     - name: zmk-shield-skeletyl
       remote: s6t
       revision: dongle
+    - name: zmk-keymap
+      remote: s6t
+      revision: main
+      import: true
   self:
     path: config
