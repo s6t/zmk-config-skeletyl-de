@@ -12,9 +12,6 @@
 #define FUNC        3
 #define MEDIA       4
 #define SYSTEM      5
-#define KEYS_LEFT   LT4 LT3 LT2 LT1 LT0 LM4 LM3 LM2 LM1 LM0 LB4 LB3 LB2 LB1 LB0
-#define KEYS_RIGHT  RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4
-#define THUMBS      LH2 LH1 LH0 RH0 RH1 RH2
 
 #define ZMK_HOME_ROW_MODS(ident, label, keys, prior_idle) ZMK_BEHAVIOR(ident, hold_tap, \
     display-name = label; \
@@ -42,10 +39,10 @@
     continue-list = <LS(DE_MINUS) DE_MINUS BACKSPACE KP_NUMBER_0 KP_NUMBER_1 KP_NUMBER_2 KP_NUMBER_3 KP_NUMBER_4 KP_NUMBER_5 KP_NUMBER_6 KP_NUMBER_7 KP_NUMBER_8 KP_NUMBER_9>;
 };
 
-ZMK_HOME_ROW_MODS(hml, "Home Row Mods Left",   KEYS_RIGHT THUMBS,  120)
-ZMK_HOME_ROW_MODS(hsl, "Home Row Shift Left",  KEYS_RIGHT THUMBS, (-1))
-ZMK_HOME_ROW_MODS(hmr, "Home Row Mods Right",  KEYS_LEFT THUMBS,   120)
-ZMK_HOME_ROW_MODS(hsr, "Home Row Shift Right", KEYS_LEFT THUMBS,  (-1))
+ZMK_HOME_ROW_MODS(hml, "Home Row Mods Left",   KEYS_R THUMBS,  120)
+ZMK_HOME_ROW_MODS(hsl, "Home Row Shift Left",  KEYS_R THUMBS, (-1))
+ZMK_HOME_ROW_MODS(hmr, "Home Row Mods Right",  KEYS_L THUMBS,   120)
+ZMK_HOME_ROW_MODS(hsr, "Home Row Shift Right", KEYS_L THUMBS,  (-1))
 
 ZMK_MOD_MORPH(kp_sep,
     mods = <(MOD_LSFT)>;
@@ -58,7 +55,7 @@ ZMK_COMBO(umlaut_o,    &kp DE_O_UMLAUT, LM3 RT3, DEFAULT, 50, (-1))
 ZMK_COMBO(umlaut_u,    &kp DE_U_UMLAUT, LM3 RT1, DEFAULT, 50, (-1))
 ZMK_COMBO(shift_left,  &sk LEFT_SHIFT,  LM2 LM1, DEFAULT, 50, (-1))
 ZMK_COMBO(shift_right, &sk RIGHT_SHIFT, RM1 RM2, DEFAULT, 50, (-1))
-ZMK_COMBO(suspend,     &kp C_SLEEP,     LM0 RM0, ALL,     50,  120)
+ZMK_COMBO(suspend,     &kp C_SLEEP,     LM0 RM0, DEFAULT, 50,  120)
 
 ZMK_LAYER(default_layer,
     &kp DE_Q        &kp DE_W        &kp DE_E         &kp DE_R         &kp DE_T           &kp DE_Z          &kp DE_U         &kp DE_I              &kp DE_O        &kp DE_P
