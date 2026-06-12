@@ -56,6 +56,8 @@ ZMK_COMBO(umlaut_u,    &kp DE_U_UMLAUT, LM3 RT1, DEFAULT, 50, (-1))
 ZMK_COMBO(shift_left,  &sk LEFT_SHIFT,  LM2 LM1, DEFAULT, 50, (-1))
 ZMK_COMBO(shift_right, &sk RIGHT_SHIFT, RM1 RM2, DEFAULT, 50, (-1))
 ZMK_COMBO(suspend,     &kp C_SLEEP,     LM0 RM0, DEFAULT, 50,  120)
+ZMK_COMBO(sys_reset,   &sys_reset,      LM4 RM4, SYSTEM,  50, (-1))
+ZMK_COMBO(bootloader,  &bootloader,     LB4 RB4, SYSTEM,  50, (-1))
 
 ZMK_LAYER(default_layer,
     &kp DE_Q        &kp DE_W        &kp DE_E         &kp DE_R         &kp DE_T           &kp DE_Z          &kp DE_U         &kp DE_I              &kp DE_O        &kp DE_P
