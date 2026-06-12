@@ -21,6 +21,6 @@ manifest:
       revision: main
     - name: zmk-shield-skeletyl
       remote: s6t
-      revision: main
+      revision: dongle
   self:
     path: config
